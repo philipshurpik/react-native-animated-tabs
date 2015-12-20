@@ -5,17 +5,14 @@ var { Component, Animated, StyleSheet } = React;
 
 var Dimensions = require('Dimensions');
 const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
-
-const SIDE_OPACITY = 0.5;
-const SIDE_SCALE = 0.8;
 
 class AnimatedTabPanel extends Component {
     render() {
         var animateStyles = {
             transform: [{translateX: this.props.x}, {scale: this.getScale()}],
             opacity: this.getOpacity(),
-            shadowOpacity: this.getShadowOpacity()
+            shadowOpacity: this.getIOSShadowOpacity(),
+            elevation: this.getAndroidElevation()
         };
         var contentStyles = this.props.children ? styles.contentPanel : null;
         var panelStyles = [styles.panel, contentStyles, animateStyles];
@@ -28,16 +25,25 @@ class AnimatedTabPanel extends Component {
     }
 
     getOpacity() {
+        const SIDE_OPACITY = 0.5;
         var opacityRange = this.props.isMain ? [SIDE_OPACITY, 1, SIDE_OPACITY] : [1, SIDE_OPACITY, 1];
         return this.props.x.interpolate({inputRange: [-deviceWidth, 0, deviceWidth], outputRange: opacityRange});
     }
 
-    getShadowOpacity() {
-        var shadowRange = this.props.isMain ? [0.7, 0, 0.7] : [0, 0.7, 0];
+    getIOSShadowOpacity() {
+        const SHADOW_OPACITY = 0.7;
+        var shadowRange = this.props.isMain ? [SHADOW_OPACITY, 0, SHADOW_OPACITY] : [0, SHADOW_OPACITY, 0];
         return this.props.x.interpolate({inputRange: [-deviceWidth, 0, deviceWidth], outputRange: shadowRange});
     }
 
+    getAndroidElevation() {
+        const MAX_ELEVATION = 15;
+        var elevationRange = this.props.isMain ? [MAX_ELEVATION, 0, MAX_ELEVATION] : [0, MAX_ELEVATION, 0];
+        return this.props.x.interpolate({inputRange: [-deviceWidth, 0, deviceWidth], outputRange: elevationRange});
+    }
+
     getScale() {
+        const SIDE_SCALE = 0.8;
         var scaleRange = this.props.isMain ? [SIDE_SCALE, 1, SIDE_SCALE] : [1, SIDE_SCALE, 1];
         return this.props.x.interpolate({inputRange: [-deviceWidth, 0, deviceWidth], outputRange: scaleRange});
     }
@@ -52,8 +58,7 @@ AnimatedTabPanel.propTypes = {
 
 const styles = StyleSheet.create({
     panel: {
-        width: deviceWidth,
-        height: deviceHeight - 68
+        width: deviceWidth
     },
     contentPanel: {
         backgroundColor: '#C1F7DD',
@@ -63,11 +68,9 @@ const styles = StyleSheet.create({
         /* Only iOS */
         shadowColor: '#000',
         shadowOffset: {height: 5},
-        shadowOpacity: 0.7,
-        shadowRadius: 10,
+        shadowRadius: 10
 
-        /* Only Android */
-        elevation: 10
+        /* Android uses elevation property */
     }
 });
 
