@@ -1,5 +1,6 @@
 # react-native-animated-tabs
-Animated Tabs for React Native. Both for iOS and Android
+Animated Tabs for React Native. Both for iOS and Android.
+Just swipe between tabs to navigate. Or press on tabbar labels.
 
 #### See example of usage:
 - index.android.js: header tab bar with labels
