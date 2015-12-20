@@ -1,9 +1,19 @@
 {
-  "name": "ReactNativeAnimatedTabs",
-  "version": "0.0.1",
+  "name": "react-native-animated-tabs",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philipshurpik/react-native-animated-tabs/"
   },
   "dependencies": {
     "react-native": "^0.17.0"
