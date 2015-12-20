@@ -38,7 +38,10 @@ const styles = StyleSheet.create({
         left: deviceWidth,
         height: 44,
         width: deviceWidth,
-        backgroundColor: '#92E4BE'
+        borderBottomColor: 'lightgrey',
+        borderBottomWidth: 1,
+        borderTopColor: 'lightgrey',
+        borderTopWidth: 1
     }
 });
 

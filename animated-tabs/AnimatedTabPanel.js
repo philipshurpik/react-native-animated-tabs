@@ -61,9 +61,7 @@ const styles = StyleSheet.create({
         width: deviceWidth
     },
     contentPanel: {
-        backgroundColor: '#C1F7DD',
-        padding: 15,
-        borderColor: 'rgba(0,0,0,0.1)',
+        backgroundColor: 'white',
 
         /* Only iOS */
         shadowColor: '#000',

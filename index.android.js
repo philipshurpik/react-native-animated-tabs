@@ -38,7 +38,11 @@ var styles = StyleSheet.create({
         alignItems: 'center'
     },
     tabContent: {
-        height: deviceHeight / 2 - HEADER_HEIGHT
+        height: deviceHeight / 2 - HEADER_HEIGHT,
+
+        backgroundColor: '#C1F7DD',
+        padding: 15,
+        borderColor: 'rgba(0,0,0,0.1)'
     }
 });
 
