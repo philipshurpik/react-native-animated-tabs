@@ -69,11 +69,17 @@ class AnimatedTabs extends Component {
     render() {
         var x = this.state.pan.x;
 
+        var tabBar = (
+            <AnimatedTabHeader onLabelPress={this._goToPanel.bind(this)} currentIndex={this.state.current}>
+                {this.props.tabBarLabels}
+            </AnimatedTabHeader>
+        );
+        var header = this.props.tabBarStyle === 'header' ? tabBar : null;
+        var footer = this.props.tabBarStyle === 'footer' ? tabBar : null;
+
         return (
             <View>
-                <AnimatedTabHeader onLabelPress={this._goToPanel.bind(this)} currentIndex={this.state.current}>
-                    {this.props.tabLabels}
-                </AnimatedTabHeader>
+                {header}
 
                 <View style={styles.panels}>
                     <AnimatedTabPanel key={1} x={x} isMain={false} panHandlers={this._panResponder.panHandlers}>
@@ -86,6 +92,8 @@ class AnimatedTabs extends Component {
                         {this.state.panels[this.state.next]}
                     </AnimatedTabPanel>
                 </View>
+
+                {footer}
             </View>
         );
     }
@@ -124,13 +132,14 @@ class AnimatedTabs extends Component {
 AnimatedTabs.propTypes = {
     selectedIndex: React.PropTypes.number,
     carousel: React.PropTypes.bool,
-    tabStyle: React.PropTypes.oneOf(['headerTabs', 'footerTabs', 'headerLabel']),
-    tabLabels: React.PropTypes.arrayOf(React.PropTypes.string)
+    tabBarStyle: React.PropTypes.oneOf(['header', 'footer']),
+    tabBarLabels: React.PropTypes.arrayOf(React.PropTypes.string)
 };
 
 AnimatedTabs.defaultProps = {
     selectedIndex: 0,
-    carousel: false
+    carousel: false,
+    tabBarStyle: 'header'
 };
 
 const styles = StyleSheet.create({
