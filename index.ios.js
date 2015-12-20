@@ -13,7 +13,7 @@ class ReactNativeAnimatedTabs extends Component {
 
         return (
             <View style={styles.animatedView}>
-                <AnimatedTabs tabLabels={content}>
+                <AnimatedTabs tabBarLabels={content} tabBarStyle="footer">
                     {tabs}
                 </AnimatedTabs>
             </View>
@@ -29,18 +29,14 @@ class ReactNativeAnimatedTabs extends Component {
     }
 }
 
-const HEADER_HEIGHT = 44;
-const VIEW_TOP = 22;
-
 var styles = StyleSheet.create({
     animatedView: {
-        top: VIEW_TOP,
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-end',
         alignItems: 'center'
     },
     tabContent: {
-        height: deviceHeight / 2 - HEADER_HEIGHT - VIEW_TOP
+        height: deviceHeight - 150
     }
 });
 

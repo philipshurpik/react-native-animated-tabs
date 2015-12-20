@@ -13,7 +13,7 @@ class ReactNativeAnimatedTabs extends Component {
 
         return (
             <View style={styles.animatedView}>
-                <AnimatedTabs tabLabels={content}>
+                <AnimatedTabs tabBarLabels={content}>
                     {tabs}
                 </AnimatedTabs>
             </View>
