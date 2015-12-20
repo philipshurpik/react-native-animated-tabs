@@ -3,7 +3,7 @@
 var React = require('react-native');
 var { View, Animated, Component, PanResponder, StyleSheet } = React;
 var AnimatedTabPanel = require('./AnimatedTabPanel.js');
-var AnimatedTabHeader = require('./AnimatedTabHeader.js');
+var AnimatedTabBar = require('./AnimatedTabBar.js');
 var AnimatedTabsService = require('./AnimatedTabs.service.js');
 
 const deviceWidth = require('Dimensions').get('window').width;
@@ -70,9 +70,9 @@ class AnimatedTabs extends Component {
         var x = this.state.pan.x;
 
         var tabBar = (
-            <AnimatedTabHeader onLabelPress={this._goToPanel.bind(this)} currentIndex={this.state.current}>
+            <AnimatedTabBar onLabelPress={this._goToPanel.bind(this)} currentIndex={this.state.current}>
                 {this.props.tabBarLabels}
-            </AnimatedTabHeader>
+            </AnimatedTabBar>
         );
         var header = this.props.tabBarStyle === 'header' ? tabBar : null;
         var footer = this.props.tabBarStyle === 'footer' ? tabBar : null;

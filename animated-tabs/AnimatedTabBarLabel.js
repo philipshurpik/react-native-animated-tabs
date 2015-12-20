@@ -3,7 +3,7 @@
 var React = require('react-native');
 var { TouchableOpacity, Component, Text, StyleSheet } = React;
 
-class AnimatedTabHeaderLabel extends Component {
+class AnimatedTabBarLabel extends Component {
     constructor(props) {
         super(props);
 
@@ -42,7 +42,7 @@ class AnimatedTabHeaderLabel extends Component {
     }
 }
 
-AnimatedTabHeaderLabel.propTypes = {
+AnimatedTabBarLabel.propTypes = {
     tabLabel: React.PropTypes.string.isRequired,
     index: React.PropTypes.number.isRequired,
     onPress: React.PropTypes.func.isRequired
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = AnimatedTabHeaderLabel;
+module.exports = AnimatedTabBarLabel;
