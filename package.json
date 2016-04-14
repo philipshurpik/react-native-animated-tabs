@@ -1,23 +1,26 @@
 {
   "name": "react-native-animated-tabs",
-  "description": "Animated Tabs for React Native. Both for iOS and Android. Just swipe between tabs to navigate. Or press on tabbar labels.",
-  "version": "0.1.0",
+  "description": "Animated Tabs for React Native. Both for iOS and Android. Just swipe between tabs to navigate",
+  "version": "1.0.0",
   "author": "Philip Shurpik (philip.shurpik@gmail.com)",
-  "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
-  },
+  "main": "index.js",
   "keywords": [
+    "react-native-component",
     "react-component",
     "react-native",
     "ios",
-    "android"
+    "android",
+    "scrollable",
+    "animated",
+    "tabs",
+    "tab"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/philipshurpik/react-native-animated-tabs/"
   },
-  "dependencies": {
-    "react-native": "^0.17.0"
+  "peerDependencies": {
+    "react-native": ">=0.20.0"
   },
   "license": "MIT"
 }
