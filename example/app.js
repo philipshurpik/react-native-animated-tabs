@@ -1,5 +1,5 @@
 import React, {StyleSheet, Component, View, Text, Dimensions} from 'react-native';
-import AnimatedTabs from '../src/AnimatedTabs.js';
+import AnimatedTabs from 'react-native-animated-tabs';
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -15,6 +15,9 @@ class AnimatedTabsExample extends Component {
 						<View style={styles.tabContent}>
 							<Text>2</Text>
 						</View>
+						<View style={styles.tabContent}>
+							<Text>3</Text>
+						</View>
 					</AnimatedTabs>
 				</View>
 			</View>
@@ -28,12 +31,9 @@ var styles = StyleSheet.create({
 	},
 	animatedView: {
 		flex: 1,
-		justifyContent: 'flex-end',
-		alignItems: 'center'
 	},
 	tabContent: {
-		height: deviceHeight - 70,
-
+		height: 300,
 		backgroundColor: '#C1F7DD',
 		padding: 15,
 		borderColor: 'rgba(0,0,0,0.1)'
