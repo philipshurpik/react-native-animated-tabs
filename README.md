@@ -21,6 +21,8 @@ Example of usage:
 ```
 More - in example folder
 
+![](https://github.com/philipshurpik/react-native-animated-tabs/raw/master/tabs.gif)
+
 ----------
 
 #### API:
