@@ -1,26 +1,37 @@
 # react-native-animated-tabs
 Animated Tabs for React Native. Both for iOS and Android.
-Just swipe between tabs to navigate. Or press on tabbar labels.
-
-#### See example of usage:
-- index.android.js: header tab bar with labels
-- index.ios.js: footer tab bar with labels + carousel scrolling
-
-----------
+Just swipe between tabs to navigate.
 
 #### Usage: 
-Just copy animated-tabs folder to your app and use it in code
+`npm i react-native-animated-tabs --save`
 
-To change color scheme - just change color values in files. Soon you will be able to set your colors in component
+Example of usage:
+```
+<AnimatedTabs>
+    <View style={styles.tabContent}>
+        <Text style={styles.text}>Tab 1 Content</Text>
+    </View>
+    <View style={styles.tabContent}>
+        <Text style={styles.text}>Tab 2 Content</Text>
+    </View>
+    <View style={styles.tabContent}>
+        <Image style={styles.image} source={require('./images/cat1.gif')} resizeMode='stretch'/>
+    </View>
+</AnimatedTabs> 
+```
+More - in example folder
 
 ----------
 
 #### API:
 Property     | Type | Description | Default value
 ------------ | ---- | ----------- | -------------
-`selectedIndex` | number | tab to start | 0
-`carousel`      | bool | carousel scrolling | false
-`tabBarStyle`   | enum('header', 'footer') | style for tabbar | 'header'
-`tabBarLabels`  | arrayOf(string) | tab labels | 
-
-`tabBarLabels` need to be specified to render tabBar
+`activePanel` | number | active panel | 0
+`animatedConfig`      | object | spring animation properties | { tension: 70, friction: 10 }
+`onAnimate`  | function | animate start callback, returns next active panel index |   
+`onAnimateFinish`  | function | animate finish callback, returns next active panel index |  
+`panelStyle`  | object | animated view styles |   
+`panelWidth`  | number | animated view width | deviceWidth / 1.4
+`swipeThreshold`  | number | threshold - to start or cancel swipe | deviceWidth / 7
+`sidePanelOpacity`  | number | opacity of not active panels | 1
+`sidePanelScale`  | number | scale of not active panels | 0.8
