@@ -1,4 +1,5 @@
-import React, {View, Animated, Component, PanResponder, StyleSheet, Dimensions, PropTypes} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, Animated, PanResponder, StyleSheet, Dimensions} from 'react-native';
 import AnimatedTabPanel from './AnimatedTabPanel';
 const deviceWidth = Dimensions.get('window').width;
 

@@ -1,4 +1,5 @@
-import React, {StyleSheet, Component, View, Text, Dimensions, Image} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, View, Text, Dimensions, Image} from 'react-native';
 import AnimatedTabs from 'react-native-animated-tabs';
 
 const deviceHeight = Dimensions.get('window').height;

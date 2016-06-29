@@ -1,7 +1,7 @@
 {
   "name": "react-native-animated-tabs",
   "description": "Animated Tabs for React Native. Both for iOS and Android. Just swipe between tabs to navigate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Philip Shurpik (philip.shurpik@gmail.com)",
   "main": "index.js",
   "keywords": [
@@ -20,7 +20,7 @@
     "url": "https://github.com/philipshurpik/react-native-animated-tabs/"
   },
   "peerDependencies": {
-    "react-native": ">=0.20.0"
+    "react-native": ">=0.25.0"
   },
   "license": "MIT"
 }

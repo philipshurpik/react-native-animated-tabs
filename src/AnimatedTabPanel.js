@@ -1,4 +1,5 @@
-import React, {Component, Animated, Dimensions, PropTypes} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Animated, Dimensions} from 'react-native';
 
 class AnimatedTabPanel extends Component {
 	render() {
