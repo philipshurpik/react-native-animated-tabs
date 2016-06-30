@@ -2,6 +2,11 @@
 Animated Tabs for React Native. Both for iOS and Android.
 Just swipe between tabs to navigate.
 
+#### Changelog:
+v 1.1.0
+* Fixed bug on Android
+* Supported navigation between tabs with external buttons (see example)
+
 #### Usage: 
 `npm i react-native-animated-tabs --save`
 
