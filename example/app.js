@@ -11,17 +11,18 @@ class AnimatedTabsExample extends Component {
 		return (
 			<View style={styles.animatedView}>
 				<AnimatedTabs panelWidth={panelWidth}>
-					<View style={[styles.tabContent, {backgroundColor: '#C1F7DD'}]}>
-						<Text style={styles.text}>Tab 1 Content</Text>
-					</View>
-					<View style={[styles.tabContent, {backgroundColor: 'orange'}]}>
-						<Text style={styles.text}>Tab 2 Content</Text>
-					</View>
 					<View style={[styles.tabContent]}>
 						<Image style={styles.image} source={require('./images/cat1.gif')} resizeMode='stretch'/>
 					</View>
+					<View style={[styles.tabContent, {backgroundColor: '#C1F7DD'}]}>
+						<Text style={styles.text}>Tab 2 Header</Text>
+						<Image style={styles.image} source={require('./images/cat3.gif')} resizeMode='cover'/>
+					</View>
 					<View style={[styles.tabContent]}>
 						<Image style={styles.image} source={require('./images/cat2.gif')} resizeMode='stretch'/>
+					</View>
+					<View style={[styles.tabContent, {backgroundColor: 'orange'}]}>
+						<Text style={styles.text}>Tab 3 Text Content</Text>
 					</View>
 				</AnimatedTabs>
 			</View>
@@ -43,7 +44,8 @@ var styles = StyleSheet.create({
 		width: panelWidth
 	},
 	text: {
-		padding: 15
+		padding: 15,
+		alignSelf: 'center'
 	}
 });
 
