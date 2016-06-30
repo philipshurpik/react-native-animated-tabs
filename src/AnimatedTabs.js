@@ -31,9 +31,10 @@ class AnimatedTabs extends Component {
 		const margin = -panelWidth + (deviceWidth - panelWidth) / 2;
 		const translateX = margin + activePanel * -panelWidth;
 		const panels = [null, ...this.state.panels, null];
+		const width = panelWidth * panels.length;
 
 		return (
-			<View style={[styles.panels, this.props.style, {transform: [{translateX}]}]}>
+			<View style={[styles.panels, this.props.style, {width, transform: [{translateX}]}]}>
 				{panels.map((panel, index) =>
 					<AnimatedTabPanel
 						key={index}
