@@ -25,6 +25,13 @@ class AnimatedTabs extends Component {
 		});
 	}
 
+	componentWillReceiveProps(props) {
+		if (props.activePanel !== this.state.activePanel) {
+			const direction = Math.sign(this.state.activePanel - props.activePanel);
+			this._animate(this.props.panelWidth * direction, props.activePanel);
+		}
+	}
+
 	render() {
 		const {panelStyle, panelWidth, sidePanelOpacity, sidePanelScale} = this.props;
 		const {activePanel, x} = this.state;
