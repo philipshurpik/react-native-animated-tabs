@@ -4,11 +4,11 @@ import AnimatedTabPanel from './AnimatedTabPanel';
 const deviceWidth = Dimensions.get('window').width;
 
 class AnimatedTabs extends Component {
-	constructor(props) {
-		super(props);
-		validate(props);
+	state = this.initialize(this.props);
 
-		this.state = {
+	initialize(props) {
+		validate(props);
+		return {
 			panels: props.children,
 			activePanel: props.activePanel,
 			x: new Animated.Value(0),
@@ -18,7 +18,8 @@ class AnimatedTabs extends Component {
 
 	componentWillMount() {
 		this._panResponder = PanResponder.create({
-			onStartShouldSetPanResponder: () => true,
+			onStartShouldSetPanResponder: this.props.startHandler ? () => false : () => true,
+			onMoveShouldSetPanResponder: this.props.startHandler ? this.props.startHandler : () => false,
 			onMoveShouldSetPanResponderCapture: () => false,
 			onPanResponderMove: (a, e) => Animated.event([{dx: this.state.x}])(e),
 			onPanResponderRelease: () => this._onPanResponderRelease()
@@ -29,6 +30,9 @@ class AnimatedTabs extends Component {
 		if (props.activePanel !== this.state.activePanel) {
 			const direction = Math.sign(this.state.activePanel - props.activePanel);
 			this._animate(this.props.panelWidth * direction, props.activePanel);
+		}
+		if (this.props.children !== props.children) {
+			this.setState(this.initialize(props));
 		}
 	}
 
@@ -93,9 +97,9 @@ AnimatedTabs.propTypes = {
 	children: PropTypes.array.isRequired,
 	onAnimate: PropTypes.func,
 	onAnimateFinish: PropTypes.func,
+	startHandler: PropTypes.func,
 	panelStyle: PropTypes.object,
 	panelWidth: PropTypes.number,
-	style: PropTypes.object,
 	swipeThreshold: PropTypes.number,
 	sidePanelOpacity: PropTypes.number,
 	sidePanelScale: PropTypes.number
