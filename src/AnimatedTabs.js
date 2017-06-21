@@ -122,7 +122,7 @@ function validate(props) {
 	if (!props.children) {
 		throw new Error('Animated Tabs: should have at least one panel in children');
 	}
-	if (props.activePanel >= props.children.length) {
+	if (props.children.length && props.activePanel >= props.children.length) {
 		throw new Error('Animated Tabs: activePanel index can\'t be larger than panels count');
 	}
 }

@@ -7,7 +7,7 @@ v 1.1.0
 * Fixed bug on Android
 * Supported navigation between tabs with external buttons (see example)
 
-v 1.2.0
+v 1.2.1
 * Reinitialisation of component when Children are changed
 * Pass onMoveShouldSetPanResponder handler to set on which swipes animation should react. 
 For example to react only on horizontal swipes:
