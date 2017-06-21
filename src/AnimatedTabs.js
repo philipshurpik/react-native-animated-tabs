@@ -17,9 +17,10 @@ class AnimatedTabs extends Component {
 	}
 
 	componentWillMount() {
+		const {onMoveShouldSetPanResponder} = this.props;
 		this._panResponder = PanResponder.create({
-			onStartShouldSetPanResponder: this.props.startHandler ? () => false : () => true,
-			onMoveShouldSetPanResponder: this.props.startHandler ? this.props.startHandler : () => false,
+			onStartShouldSetPanResponder: onMoveShouldSetPanResponder ? () => false : () => true,
+			onMoveShouldSetPanResponder: onMoveShouldSetPanResponder ? onMoveShouldSetPanResponder : () => false,
 			onMoveShouldSetPanResponderCapture: () => false,
 			onPanResponderMove: (a, e) => Animated.event([{dx: this.state.x}])(e),
 			onPanResponderRelease: () => this._onPanResponderRelease()
@@ -97,7 +98,7 @@ AnimatedTabs.propTypes = {
 	children: PropTypes.array.isRequired,
 	onAnimate: PropTypes.func,
 	onAnimateFinish: PropTypes.func,
-	startHandler: PropTypes.func,
+	onMoveShouldSetPanResponder: PropTypes.func,
 	panelStyle: PropTypes.object,
 	panelWidth: PropTypes.number,
 	swipeThreshold: PropTypes.number,

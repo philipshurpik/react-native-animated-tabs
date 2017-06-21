@@ -7,6 +7,16 @@ v 1.1.0
 * Fixed bug on Android
 * Supported navigation between tabs with external buttons (see example)
 
+v 1.2.0
+* Reinitialisation of component when Children are changed
+* Pass onMoveShouldSetPanResponder handler to set on which swipes animation should react. 
+For example to react only on horizontal swipes:
+```
+    onMoveShouldSetPanResponder={(a, e) => {
+        return Math.abs(e.dx) > 30 && Math.abs(e.dx) > Math.abs(e.dy) * 1.5;
+    }}
+```
+
 #### Usage: 
 `npm i react-native-animated-tabs --save`
 
@@ -37,6 +47,7 @@ Property     | Type | Description | Default value
 `animatedConfig`      | object | spring animation properties | { tension: 70, friction: 10 }
 `onAnimate`  | function | animate start callback, returns next active panel index |   
 `onAnimateFinish`  | function | animate finish callback, returns next active panel index |  
+`onMoveShouldSetPanResponder`  | function | should animation be started | undefined (start immediately) 
 `panelStyle`  | object | animated view styles |   
 `panelWidth`  | number | animated view width | deviceWidth / 1.4
 `swipeThreshold`  | number | threshold - to start or cancel swipe | deviceWidth / 7
