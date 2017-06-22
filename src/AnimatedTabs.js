@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {View, Animated, PanResponder, StyleSheet, Dimensions} from 'react-native';
 import AnimatedTabPanel from './AnimatedTabPanel';
 const deviceWidth = Dimensions.get('window').width;
+const pow = value => Math.sign(value) * Math.pow(Math.abs(value), 0.8);
 
 class AnimatedTabs extends Component {
 	state = this.initialize(this.props);
@@ -22,7 +23,11 @@ class AnimatedTabs extends Component {
 			onStartShouldSetPanResponder: onMoveShouldSetPanResponder ? () => false : () => true,
 			onMoveShouldSetPanResponder: onMoveShouldSetPanResponder ? onMoveShouldSetPanResponder : () => false,
 			onMoveShouldSetPanResponderCapture: () => false,
-			onPanResponderMove: (a, e) => Animated.event([{dx: this.state.x}])(e),
+			onPanResponderMove: (a, e) => {
+				const {activePanel: tab, panels} = this.state;
+				const dx = ((tab === 0 && e.dx > 0) || (tab === (panels.length - 1) && e.dx < 0)) ? pow(e.dx) : e.dx;
+				return Animated.event([{dx: this.state.x}])({dx});
+			},
 			onPanResponderRelease: () => this._onPanResponderRelease()
 		});
 	}
