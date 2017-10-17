@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {View, Animated, PanResponder, StyleSheet, Dimensions} from 'react-native';
 import AnimatedTabPanel from './AnimatedTabPanel';
-const deviceWidth = Dimensions.get('window').width;
+const getDeviceWidth = () => Dimensions.get('window').width;
 const pow = value => Math.sign(value) * Math.pow(Math.abs(value), 0.8);
 
 class AnimatedTabs extends Component {
@@ -45,7 +45,7 @@ class AnimatedTabs extends Component {
 	render() {
 		const {panelStyle, panelWidth, sidePanelOpacity, sidePanelScale} = this.props;
 		const {activePanel, x} = this.state;
-		const margin = -panelWidth + (deviceWidth - panelWidth) / 2;
+		const margin = -panelWidth + (getDeviceWidth() - panelWidth) / 2;
 		const translateX = margin + activePanel * -panelWidth;
 		const panels = [null, ...this.state.panels, null];
 		const width = panelWidth * panels.length;
@@ -119,8 +119,8 @@ AnimatedTabs.defaultProps = {
 	},
 	onAnimate: () => undefined,
 	onAnimateFinish: () => undefined,
-	panelWidth: deviceWidth / 1.4,
-	swipeThreshold: deviceWidth / 7
+	panelWidth: getDeviceWidth() / 1.4,
+	swipeThreshold: getDeviceWidth() / 7
 };
 
 function validate(props) {

@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text, Dimensions, Image, TouchableOpacity} from 'react-native';
 import AnimatedTabs from 'react-native-animated-tabs';
 
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
-const panelWidth = deviceWidth / 1.3;
+const getDeviceHeight = () => Dimensions.get('window').height;
+const getDeviceWidth = () => Dimensions.get('window').width;
+const getPanelWidth = () => getDeviceWidth() / 1.3;
 
 const panelsCount = 4;
 
@@ -18,24 +18,31 @@ class AnimatedTabsExample extends Component {
 	}
 
 	render() {
+		const animatedViewStyle = {flex: 1, marginTop: getDeviceHeight() / 4};
+		const imageStyle = {flex: 1, width: getPanelWidth()};
+		const tabContentStyle = {
+			height: getDeviceHeight() - getDeviceHeight() / 2,
+			width: getPanelWidth()
+		};
+
 		return (
-			<View style={styles.animatedView}>
+			<View style={animatedViewStyle}>
 				<AnimatedTabs
-					panelWidth={panelWidth}
+					panelWidth={getPanelWidth()}
 					activePanel={this.state.activePanel}
 					onAnimateFinish={activePanel => this.setState({activePanel})}
 				>
-					<View style={[styles.tabContent]}>
-						<Image style={styles.image} source={require('./images/cat1.gif')} resizeMode='stretch'/>
+					<View style={[tabContentStyle]}>
+						<Image style={imageStyle} source={require('./images/cat1.gif')} resizeMode='stretch'/>
 					</View>
-					<View style={[styles.tabContent, {backgroundColor: '#C1F7DD'}]}>
+					<View style={[tabContentStyle, {backgroundColor: '#C1F7DD'}]}>
 						<Text style={styles.text}>Tab 2 Header</Text>
-						<Image style={styles.image} source={require('./images/cat3.gif')} resizeMode='cover'/>
+						<Image style={imageStyle} source={require('./images/cat3.gif')} resizeMode='cover'/>
 					</View>
-					<View style={[styles.tabContent]}>
-						<Image style={styles.image} source={require('./images/cat2.gif')} resizeMode='stretch'/>
+					<View style={[tabContentStyle]}>
+						<Image style={imageStyle} source={require('./images/cat2.gif')} resizeMode='stretch'/>
 					</View>
-					<View style={[styles.tabContent, {backgroundColor: 'orange'}]}>
+					<View style={[tabContentStyle, {backgroundColor: 'orange'}]}>
 						<Text style={styles.text}>Tab 3 Text Content</Text>
 					</View>
 				</AnimatedTabs>
@@ -62,19 +69,7 @@ class AnimatedTabsExample extends Component {
 	}
 }
 
-var styles = StyleSheet.create({
-	animatedView: {
-		marginTop: deviceHeight / 4,
-		flex: 1
-	},
-	tabContent: {
-		height: deviceHeight - deviceHeight / 2,
-		width: panelWidth
-	},
-	image: {
-		flex: 1,
-		width: panelWidth
-	},
+const styles = StyleSheet.create({
 	text: {
 		padding: 15,
 		alignSelf: 'center'
