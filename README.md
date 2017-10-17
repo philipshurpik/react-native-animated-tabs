@@ -17,6 +17,9 @@ For example to react only on horizontal swipes:
     }}
 ```
 
+v 1.3
+Correct support for changing orientation
+
 #### Usage: 
 `npm i react-native-animated-tabs --save`
 

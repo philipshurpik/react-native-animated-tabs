@@ -3,6 +3,8 @@ import {View, Animated, PanResponder, StyleSheet, Dimensions} from 'react-native
 import AnimatedTabPanel from './AnimatedTabPanel';
 const getDeviceWidth = () => Dimensions.get('window').width;
 const pow = value => Math.sign(value) * Math.pow(Math.abs(value), 0.8);
+const getDefaultSwipeThreshold = () => getDeviceWidth() / 7;
+const getDefaultPanelWidth = () => getDeviceWidth() / 1.4;
 
 class AnimatedTabs extends Component {
 	state = this.initialize(this.props);
@@ -33,9 +35,10 @@ class AnimatedTabs extends Component {
 	}
 
 	componentWillReceiveProps(props) {
+		const {panelWidth = getDefaultPanelWidth()} = props;
 		if (props.activePanel !== this.state.activePanel) {
 			const direction = Math.sign(this.state.activePanel - props.activePanel);
-			this._animate(this.props.panelWidth * direction, props.activePanel);
+			this._animate(panelWidth * direction, props.activePanel);
 		}
 		if (this.props.children !== props.children) {
 			this.setState(this.initialize(props));
@@ -43,7 +46,7 @@ class AnimatedTabs extends Component {
 	}
 
 	render() {
-		const {panelStyle, panelWidth, sidePanelOpacity, sidePanelScale} = this.props;
+		const {panelStyle, panelWidth = getDefaultPanelWidth(), sidePanelOpacity, sidePanelScale} = this.props;
 		const {activePanel, x} = this.state;
 		const margin = -panelWidth + (getDeviceWidth() - panelWidth) / 2;
 		const translateX = margin + activePanel * -panelWidth;
@@ -72,7 +75,7 @@ class AnimatedTabs extends Component {
 	}
 
 	_onPanResponderRelease() {
-		const {panelWidth, swipeThreshold} = this.props;
+		const {panelWidth = getDefaultPanelWidth(), swipeThreshold = getDefaultSwipeThreshold()} = this.props;
 		const {x, panels, activePanel} = this.state;
 		const direction = x._value > 0 ? 1 : -1;
 		const canMove = (direction > 0 && activePanel > 0) || (direction < 0 && activePanel < panels.length - 1);
@@ -118,9 +121,7 @@ AnimatedTabs.defaultProps = {
 		friction: 10
 	},
 	onAnimate: () => undefined,
-	onAnimateFinish: () => undefined,
-	panelWidth: getDeviceWidth() / 1.4,
-	swipeThreshold: getDeviceWidth() / 7
+	onAnimateFinish: () => undefined
 };
 
 function validate(props) {
