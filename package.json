@@ -20,7 +20,7 @@
     "url": "https://github.com/philipshurpik/react-native-animated-tabs/"
   },
   "peerDependencies": {
-    "react-native": ">=0.25.0"
+    "react-native": ">=0.40.0"
   },
   "license": "MIT"
 }
